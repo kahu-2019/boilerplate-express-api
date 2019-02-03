@@ -27,12 +27,20 @@ router.get('/:id', (req, res) => {
 
 router.post('/addnew', (req, res) => {
   let newUser = req.body
-  console.log(newUser)
   db.addUser(newUser)
     .then(() => {
       res.redirect('/')
     })
 
+})
+
+router.post('/updateuser/:id', (req, res) => {
+  let id = req.params.id
+  let user = req.body
+  db.updateUser(id, user)
+    .then(() => {
+      res.redirect('/')
+    })
 
 })
 

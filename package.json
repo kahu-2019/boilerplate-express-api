@@ -7,12 +7,10 @@
     "knex": "knex",
     "dev": "nodemon index",
     "start": "node index",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "build": "webpack"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dev-academy-challenges/boilerplate-express-api.git"
-  },
+  "repository": "git+https://github.com/dev-academy-challenges/boilerplate-express-api.git",
   "author": "EDA",
   "license": "ISC",
   "bugs": {
@@ -20,13 +18,17 @@
   },
   "homepage": "https://github.com/dev-academy-challenges/boilerplate-express-api#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "jest": "^22.1.4",
     "nodemon": "^1.14.12",
     "sqlite3": "^3.1.13",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "webpack-cli": "^3.2.1"
   },
   "dependencies": {
     "express": "^4.16.2",
-    "knex": "^0.14.2"
+    "knex": "^0.14.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
   }
 }

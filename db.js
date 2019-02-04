@@ -23,3 +23,8 @@ function addUser(newUser, testDb) {
   const db = testDb || connection
   return db('users').insert(newUser)
 }
+
+function updateUser(user, testDb) {
+  const db = testDb || connection
+  return db('users').where('id', user.id).update(user)
+}

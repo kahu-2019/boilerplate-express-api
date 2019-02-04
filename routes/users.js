@@ -36,5 +36,16 @@ router.post('/addnew', (req, res) => {
     })
 })
 
+router.patch('/id:', (req, res) => {
+  let userDetails = req.body
+  userDetails.id = req.params.id
+  db.updateUser(userDetails)
+    .then(recordCount => {
+      res.send('hello')
+    })
+})
+
+
+
 module.exports = router
 

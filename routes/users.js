@@ -8,7 +8,7 @@ const router = express.Router()
 router.get('/', (req, res) => {
   db.getUsers()
     .then(users => {
-      res.send({ users: users })
+      res.json({ users: users })
     })
     .catch(err => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -29,19 +29,18 @@ router.get('/:id', (req, res) => {
 router.post('/addnew', (req, res) => {
   const newUser = req.body
 
-  console.log(newUser)
   db.addUser(newUser)
-    .then(() => {
-      res.redirect('/')
+    .then((ids) => {
+      res.json({ id: ids[0] })
     })
 })
 
-router.patch('/id:', (req, res) => {
+router.patch('/:id', (req, res) => {
   let userDetails = req.body
   userDetails.id = req.params.id
   db.updateUser(userDetails)
     .then(recordCount => {
-      res.send('hello')
+      res.json(recordCount)
     })
 })
 

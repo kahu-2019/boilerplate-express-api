@@ -29,7 +29,7 @@ router.post('/addnew', (req, res) => {
   let newUser = req.body
   db.addUser(newUser)
     .then(ids => {
-      res.json('ids[0]')
+      res.json(ids[0])
     })
 
 })
@@ -38,8 +38,8 @@ router.post('/updateuser/:id', (req, res) => {
   let id = req.params.id
   let user = req.body
   db.updateUser(id, user)
-    .then(ids => {
-      res.json('ids[0]')
+    .then((test) => {
+      res.json(test)
     })
 
 })

@@ -8,7 +8,10 @@ jest.mock('../../db', () => ({
     { id: 4, name: 'test user 4', email: 'test4@user.nz' }
   ]),
   addUser: () => Promise.resolve(
-    { id: 5, name: 'test user 5', email: 'test5@user.nz' }
+    { name: 'test user 5', email: 'test5@user.nz' }
+  ),
+  updateUser: () => Promise.resolve(
+    { id: 2, name: 'new user' }
   )
 
 }))
@@ -48,13 +51,27 @@ test('/users/:id returns a user by ID', () => {
 })
 
 test('/users/addnew add a new user', () => {
-  const expected = 5
+  const expected = 'test user'
   return request(server)
     .get('/users/addnew')
     .expect('Content-Type', /json/)
     .expect(200)
     .then(res => {
-      expect(5).toBe(expected)
+      expect(res.body.user.name).toBe(expected)
+    })
+    .catch(err => {
+      expect(err).toBeFalsy()
+    })
+})
+
+test('/users/updateuser/:id', () => {
+  const expected = 'new user'
+  return request(server)
+    .get('/users/updateuser/:id')
+    .expect('Content-Type', "text/html; charset=utf-8")
+    .expect(200)
+    .then(res => {
+      expect(res.body.user.name).toBe(expected)
     })
     .catch(err => {
       expect(err).toBeFalsy()
